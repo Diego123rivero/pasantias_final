@@ -1,0 +1,32 @@
+/* Cambiar color de fondo del layout principal */
+.main-wrapper {
+    background-color: #f5f5f5; /* Cambia a tu color deseado */
+    color: #333333; /* Cambia el color del texto si es necesario */
+}
+
+/* Cambiar color de fondo del navbar */
+.navbar-bg {
+    background-color: #4CAF50; /* Cambia el color del fondo del navbar */
+}
+
+/* Cambiar color de fondo del sidebar */
+.main-sidebar {
+    background-color: #333333; /* Cambia el color del sidebar */
+    color: #ffffff; /* Color del texto del sidebar */
+}
+
+/* Cambiar color del texto en el sidebar */
+.main-sidebar .sidebar-menu a {
+    color: #ffffff; /* Color de los enlaces */
+}
+
+.main-sidebar .sidebar-menu .active > a {
+    background-color: #4CAF50; /* Fondo del enlace activo */
+    color: #ffffff; /* Texto del enlace activo */
+}
+
+/* Cambiar color de fondo del footer */
+.main-footer {
+    background-color: #4CAF50; /* Cambia el color del footer */
+    color: #ffffff; /* Cambia el color del texto del footer */
+}

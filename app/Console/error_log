@@ -1,0 +1,12 @@
+[25-Jun-2024 16:54:49 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Console\Kernel" not found in /home2/schatzen/public_html/diego.schatzencode.com/app/Console/Kernel.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/schatzen/public_html/diego.schatzencode.com/app/Console/Kernel.php on line 8
+[27-Jul-2024 04:35:09 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Console\Kernel" not found in /home2/schatzen/public_html/diego.schatzencode.com/app/Console/Kernel.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/schatzen/public_html/diego.schatzencode.com/app/Console/Kernel.php on line 8
+[27-Jul-2024 12:24:35 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Console\Kernel" not found in /home2/schatzen/public_html/diego.schatzencode.com/app/Console/Kernel.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/schatzen/public_html/diego.schatzencode.com/app/Console/Kernel.php on line 8

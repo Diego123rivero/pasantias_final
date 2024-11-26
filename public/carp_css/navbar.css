@@ -1,0 +1,52 @@
+/* Cambiar el color de fondo del navbar */
+.navbar {
+    background-color: #de8e2c; /* Cambia a tu color deseado */
+    color: #ffffff; /* Color del texto y elementos */
+}
+
+/* Cambiar el color de los enlaces */
+.navbar .nav-link {
+    color: #ffffff; /* Cambia el color de los enlaces */
+}
+
+/* Cambiar el color al pasar el mouse por los enlaces */
+.navbar .nav-link:hover {
+    color: #FFEB3B; /* Cambia a un color que contraste */
+}
+
+/* Cambiar el color de los iconos */
+.navbar .nav-link i {
+    color: #ffffff; /* Color del icono */
+}
+
+/* Cambiar el color del texto del dropdown */
+.navbar .dropdown-menu {
+    background-color: #f0f0f0; /* Fondo del menú desplegable */
+    color: #ffffff; /* Texto del menú desplegable */
+}
+
+.navbar .dropdown-menu a {
+    color: #ffffff; /* Color de los enlaces en el dropdown */
+}
+
+.navbar .dropdown-menu a:hover {
+    background-color: #c9cac9; /* Fondo del enlace en hover */
+    color: #FFEB3B; /* Texto del enlace en hover */
+}
+.main-content {
+    background-color: #ffffff; /* Cambia a blanco o al color que prefieras */
+    padding: 0; /* Ajusta el padding si es necesario */
+    margin: 0; /* Ajusta el margen si es necesario */
+}
+/* Eliminar borde o sombra del navbar */
+.navbar {
+    border: none;  /* Eliminar bordes */
+    box-shadow: none;  /* Eliminar sombra */
+}
+
+/* Si el cuadrado es parte de la cabecera o la primera sección */
+.section-header {
+    border-bottom: none;  /* Eliminar borde inferior si es lo que lo causa */
+    box-shadow: none;  /* Eliminar sombra */
+}
+

@@ -1,0 +1,8 @@
+[14-Aug-2024 10:11:00 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home2/schatzen/public_html/diego.schatzencode.com/database/seeders/DatabaseSeeder.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/schatzen/public_html/diego.schatzencode.com/database/seeders/DatabaseSeeder.php on line 8
+[16-Aug-2024 10:18:16 UTC] PHP Fatal error:  Uncaught Error: Class "Illuminate\Database\Seeder" not found in /home2/schatzen/public_html/diego.schatzencode.com/database/seeders/DatabaseSeeder.php:8
+Stack trace:
+#0 {main}
+  thrown in /home2/schatzen/public_html/diego.schatzencode.com/database/seeders/DatabaseSeeder.php on line 8
