@@ -1,127 +1,70 @@
 @extends('admin.layouts2.master')
 
 @section('content')
-<div class="container mt-5">
-    <div class="table-container p-4 bg-white shadow rounded">
-        <h2 class="text-primary mb-4">Detalles del Item</h2>
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover table-striped">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Categoría</th>
-                        <th>Subcategoría</th>
-                        <th>Item</th>
-                        <th>Marca</th>
-                        <th>Modelo</th>
-                        <th>Serie</th>
-                        <th>Color</th>
-                        <th>Estado</th>
-                        <th>Ubicación</th>
-                        <th>Código</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{ $item->categoria }}</td>
-                        <td>{{ $item->subcategoria }}</td>
-                        <td>{{ $item->item }}</td>
-                        <td>{{ $item->marca }}</td>
-                        <td>{{ $item->modelo }}</td>
-                        <td>{{ $item->serie }}</td>
-                        <td>{{ $item->color }}</td>
-                        <td>{{ $item->estado }}</td>
-                        <td>{{ $item->ubicacion }}</td>
-                        <td>{{ $item->codigo }}</td>
-                        <td>
-                            <!-- Botón de Imprimir -->
-                            <a href="#" class="btn btn-success btn-icon-only" onclick="window.print();" title="Imprimir">
-                                <i class="fas fa-print"></i>
-                            </a>
-                            <!-- Botón de Volver -->
-                            <a href="{{ route('item') }}" class="btn btn-back-only" title="Volver">
-                                <i class="fas fa-arrow-left"></i>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+<section class="section">
+    <div class="section-header">
+        <h1 class="text-primary">Detalles del Item</h1>
+    </div>
+
+    <!-- Mostrar Mensajes de Retroalimentación -->
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header" style="background-color: #de8e2c; color: #fff;">
+                    <h3 class="mb-0">Información del Item</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Mostrar Categoría -->
+                            <div class="form-group">
+                                <label><strong>Categoría:</strong></label>
+                                <p>{{ $item->categoria }}</p>
+                            </div>
+                            <!-- Mostrar Ubicación -->
+                            <div class="form-group">
+                                <label><strong>Ubicación:</strong></label>
+                                <p>{{ $item->ubicacion }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <!-- Mostrar QR -->
+                            <div class="form-group">
+                                <label><strong>Código QR:</strong></label><br>
+                                <img src="{{ asset('qr_codes/qr_item_' . $item->id . '.png') }}" alt="QR" style="max-width: 200px; max-height: 200px;">
+                            </div>
+                            <!-- Logo del Colegio -->
+                            <div class="form-group">
+                                <label><strong>Logo del Colegio:</strong></label><br>
+                                <img src="{{ asset('images/logo_colegio.png') }}" alt="Logo Colegio" style="max-width: 150px; max-height: 150px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="{{ route('item.index') }}" class="btn btn-primary btn-rounded btn-lg">Volver</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
+@endsection
 
+@section('styles')
 <style>
-    body {
-        background-color: #f8f9fa;
-        font-family: 'Arial', sans-serif;
+    .form-group {
+        margin-bottom: 15px;
     }
-
-    .table-container {
-        background: #ffffff;
-        padding: 30px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-    }
-
-    .table th, .table td {
-        vertical-align: middle;
-        text-align: center;
-    }
-
-    .table thead th {
-        background-color: #007bff;
-        color: #ffffff;
-        border-color: #0069d9;
-        font-size: 1.1em;
-    }
-
-    .table tbody tr:nth-child(odd) {
-        background-color: #f2f9ff;
-    }
-
-    .table tbody tr:nth-child(even) {
-        background-color: #ffffff;
-    }
-
-    .table tbody tr:hover {
-        background-color: #e6f7ff;
-    }
-
-    .text-primary {
-        color: #007bff;
-    }
-
-    /* Botón de imprimir */
-    .btn-icon-only {
-        background-color: #28a745;
-        color: #ffffff;
-        border: none;
-        border-radius: 50%;
-        padding: 10px;
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: transform 0.2s ease, background-color 0.3s ease;
-    }
-
-    .btn-icon-only:hover {
-        background-color: #218838;
-        transform: scale(1.1);
-    }
-
-    /* Botón de volver */
-    .btn-back-only {
-        background-color: transparent;
-        color: #007bff;
-        border: none;
-        padding: 10px;
-        font-size: 1.5rem;
-        cursor: pointer;
-        transition: transform 0.2s ease, color 0.3s ease;
-    }
-
-    .btn-back-only:hover {
-        color: #0056b3;
-        transform: scale(1.2);
+    .form-group label {
+        font-weight: bold;
     }
 </style>
 @endsection
+
