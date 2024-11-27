@@ -40,7 +40,12 @@
             </div>
         @endforeach
     </div>
-    
+    <!-- Botón para descargar todas las etiquetas -->
+    <div class="text-center mt-5">
+        <a href="{{ route('descargar.etiquetas') }}" class="btn btn-success btn-lg">
+            <i class="fas fa-download"></i> Descargar todas las etiquetas
+        </a>
+    </div>
 <style>
     .card {
         border: none;

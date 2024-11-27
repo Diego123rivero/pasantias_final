@@ -72,6 +72,7 @@ Route::post('/item/{id}/generar-qr', [ItemController::class, 'generarQRManual'])
 Route::get('/item/{id}/image', [ItemController::class, 'mostrarQR'])->name('item.mostrarQR');
 Route::get('/item/{id}/ver-qr', [ItemController::class, 'verQR'])->name('item.verQR');
 Route::get('/etiquetas', [ItemController::class, 'mostrarEtiquetas'])->name('etiquetas');
+Route::get('/descargar-etiquetas', [ItemController::class, 'descargarTodasLasEtiquetas'])->name('descargar.etiquetas');
 
 
 

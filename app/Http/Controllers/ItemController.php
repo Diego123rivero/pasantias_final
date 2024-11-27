@@ -7,6 +7,8 @@ use App\Models\Item;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
+use ZipArchive;
 
 class ItemController extends Controller
 {
@@ -163,5 +165,88 @@ public function mostrarEtiquetas()
     $items = Item::all(); // Recuperar todos los ítems
 
     return view('item_plantilla', compact('items'));
+}
+public function descargarTodasLasEtiquetas()
+{
+    // Recuperar todos los productos
+    $items = Item::all();
+    
+    // Ruta temporal para almacenar las imágenes de las etiquetas
+    $tempDir = storage_path('app/etiquetas_temp/');
+    
+    // Crear el directorio temporal si no existe
+    if (!File::exists($tempDir)) {
+        File::makeDirectory($tempDir, 0777, true);
+    }
+
+    // Crear un archivo ZIP
+    $zip = new ZipArchive;
+    $zipFile = storage_path('app/etiquetas.zip'); // Ruta donde se almacenará el archivo ZIP
+
+    if ($zip->open($zipFile, ZipArchive::CREATE) === TRUE) {
+        // Recorrer todos los ítems
+        foreach ($items as $item) {
+            // Generar la imagen de la etiqueta (con QR y los datos)
+            $this->generarEtiquetaImagen($item, $tempDir);
+
+            // Agregar la imagen al archivo ZIP
+            $zip->addFile($tempDir . 'etiqueta_' . $item->id . '.png', 'etiqueta_' . $item->id . '.png');
+        }
+        $zip->close();
+    }
+
+    // Eliminar los archivos temporales después de crear el ZIP
+    File::deleteDirectory($tempDir);
+
+    // Devolver el archivo ZIP para descarga
+    return response()->download($zipFile)->deleteFileAfterSend(true);
+}
+private function generarEtiquetaImagen($item, $tempDir)
+{
+    // Ruta donde se guardará la imagen de la etiqueta
+    $filePath = rtrim($tempDir, '/') . '/etiqueta_' . $item->id . '.png';  // Asegúrate de que $tempDir termine con un '/'
+
+    // Crear la imagen de la etiqueta (puedes usar alguna librería para generar imágenes como GD, ImageIntervention, etc)
+    // Para este ejemplo usaremos la biblioteca GD para dibujar texto e insertar el QR
+
+    // Crear una imagen de tamaño 400x300 px (puedes ajustarlo según tus necesidades)
+    $image = imagecreatetruecolor(400, 300);
+
+    // Colores para la imagen
+    $backgroundColor = imagecolorallocate($image, 255, 255, 255); // Blanco
+    $textColor = imagecolorallocate($image, 0, 0, 0); // Negro
+
+    // Rellenar la imagen con el color de fondo
+    imagefill($image, 0, 0, $backgroundColor);
+
+    // Agregar texto (Categoría y Ubicación) usando la función imagestring() que usa fuentes predeterminadas
+    imagestring($image, 5, 20, 20, "Categoria: " . $item->categoria, $textColor);  // Tamaño de fuente 5
+    imagestring($image, 5, 20, 60, "Ubicacion: " . $item->ubicacion, $textColor);  // Tamaño de fuente 5
+    imagestring($image, 5, 20, 100, "Nombre: " . $item->item, $textColor);  // Tamaño de fuente 5
+
+
+    // Insertar el QR generado previamente (asumimos que el QR ya está en el directorio public/qr_codes)
+    $qrImagePath = public_path('qr_codes/qr_item_' . $item->id . '.png');
+    
+    // Verificar si la imagen QR existe antes de cargarla
+    if (!file_exists($qrImagePath)) {
+        // Si no existe, abortar con error
+        throw new Exception("QR no encontrado en la ruta: " . $qrImagePath);
+    }
+
+    // Cargar la imagen del QR
+    $qrImage = imagecreatefrompng($qrImagePath);
+
+    $qrWidth = 100; // El ancho del QR
+    $qrHeight = 100; 
+    // Copiar el QR a la etiqueta (Ajusta la posición y el tamaño según sea necesario)
+    imagecopyresized($image, $qrImage, 150, 180, 0, 0, $qrWidth, $qrHeight, imagesx($qrImage), imagesy($qrImage)); // Ajusta la posición y tamaño del QR
+
+    // Guardar la imagen generada como archivo PNG
+    imagepng($image, $filePath);
+
+    // Liberar memoria
+    imagedestroy($image);
+    imagedestroy($qrImage);
 }
 }
