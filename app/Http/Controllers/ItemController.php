@@ -27,7 +27,7 @@ class ItemController extends Controller
         $id = $item->id;
         $this->generarQRManual($id);
         // Redirigir con mensaje de éxito
-        return redirect()->route('item')->with('success', 'Item creado exitosamente.');
+        return redirect()->route('item');
     }
 
     // Crear un nuevo item - vista
@@ -50,7 +50,7 @@ class ItemController extends Controller
         $item->delete();
 
         // Redirigir con mensaje de éxito
-        return redirect()->route('item')->with('success', 'Item eliminado exitosamente.');
+        return redirect()->route('item');
     }
 
     // Editar un item
@@ -80,7 +80,7 @@ class ItemController extends Controller
         $item->update($validatedData);
 
         // Redirigir con mensaje de éxito
-        return redirect()->route('item')->with('success', 'Item actualizado exitosamente.');
+        return redirect()->route('item');
     }
 
     // Generar QR manualmente para un solo item
@@ -92,7 +92,7 @@ class ItemController extends Controller
         $this->generarCodigoQR($item);
 
         // Redirigir con mensaje de éxito
-        return redirect()->route('item')->with('success', "Código QR generado para el item: {$item->item}");
+        return redirect()->route('item');
     }
 
     // Generar QR para todos los items

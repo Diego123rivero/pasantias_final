@@ -99,7 +99,7 @@ Auth::routes();
 
 /* Ruta raíz */
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome1');
 })->name('inicio.ir');
 
 /* Registro y login */

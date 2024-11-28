@@ -29,11 +29,7 @@
                             </div>
 
                             <!-- Botón para descargar el QR -->
-                            <form action="" method="GET">
-                                <button type="submit" class="btn btn-primary btn-lg mt-4">
-                                    <i class="fas fa-download"></i> Descargar QR
-                                </button>
-                            </form>
+                           
                         </div>
                     </div>
                 </div>

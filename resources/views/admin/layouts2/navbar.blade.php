@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-lg main-navbar fixed-top">
     <form class="form-inline mr-auto">
         <ul class="navbar-nav mr-3">
@@ -9,7 +8,6 @@
     <ul class="navbar-nav navbar-right">
         <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image" src="backend/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
                 <div class="d-sm-none d-lg-inline-block">Admin</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">

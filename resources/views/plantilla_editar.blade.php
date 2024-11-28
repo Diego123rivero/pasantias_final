@@ -7,10 +7,11 @@
         background-color: #f4f4f4;
         margin: 0;
         padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
+    }
+
+    .section {
+        padding-top: 80px; /* Espacio para evitar que el contenido quede debajo del navbar */
+        padding-bottom: 20px;
     }
 
     .container {
@@ -19,6 +20,7 @@
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         max-width: 600px;
+        margin: 0 auto;
         width: 100%;
     }
 
@@ -28,7 +30,7 @@
     }
 
     .section-header h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
         color: #007bff;
         font-weight: 700;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -91,36 +93,33 @@
     <div class="section-header">
         <h1>Editar Plantilla</h1>
     </div>
-    <div class="row">
-        <div class="container">
-            <form action="{{ route('plantilla.update', $plantilla->id) }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
-                
-                <!-- Campo para actividad -->
-                <label for="actividad">Actividad:</label>
-                <input type="text" id="actividad" name="actividad" value="{{ $plantilla->actividad }}" required>
+    <div class="container">
+        <form action="{{ route('plantilla.update', $plantilla->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            
+            <!-- Campo para actividad -->
+            <label for="actividad">Actividad:</label>
+            <input type="text" id="actividad" name="actividad" value="{{ $plantilla->actividad }}" required>
 
-                <!-- Campo para fecha -->
-                <label for="fecha">Fecha:</label>
-                <input type="date" name="fecha" id="fecha" value="{{ $plantilla->fecha }}" required>
+            <!-- Campo para fecha -->
+            <label for="fecha">Fecha:</label>
+            <input type="date" name="fecha" id="fecha" value="{{ $plantilla->fecha }}" required>
 
-                <!-- Campo para imagen -->
-                <label for="imagen">Imagen (opcional):</label>
-                <input type="file" name="imagen" id="imagen" accept="image/*">
+            <!-- Campo para imagen -->
+            <label for="imagen">Imagen (opcional):</label>
+            <input type="file" name="imagen" id="imagen" accept="image/*">
 
-                <!-- Vista previa de la imagen actual -->
-                @if($plantilla->imagen)
-                    <div class="image-preview">
-                        <p><strong>Imagen Actual:</strong></p>
-                        <img src="{{ asset('storage/' . $plantilla->imagen) }}" alt="Imagen Actual">
-                    </div>
-                @endif
+            <!-- Vista previa de la imagen actual -->
+            @if($plantilla->imagen)
+                <div class="image-preview">
+                    <p><strong>Imagen Actual:</strong></p>
+                    <img src="{{ asset('storage/' . $plantilla->imagen) }}" alt="Imagen Actual">
+                </div>
+            @endif
 
-                <button type="submit">Actualizar</button>
-            </form>
-        </div>
+            <button type="submit">Actualizar</button>
+        </form>
     </div>
 </section>
-
 @endsection

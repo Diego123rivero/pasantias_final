@@ -46,9 +46,6 @@
                     <li class="{{ Request::is('plantilla*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('/plantilla') }}">Plantilla</a>
                     </li>
-                    <li class="{{ Request::is('image*') ? 'active' : '' }}">
-    <a class="nav-link" href="{{ url('/image/1') }}">Descarga Imágenes</a>
-</li>
 
                     @endrole
 
@@ -60,9 +57,7 @@
                     <li class="{{ Request::is('plantilla*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('/plantilla') }}">Plantilla</a>
                     </li>
-                    <li class="{{ Request::is('image*') ? 'active' : '' }}">
-    <a class="nav-link" href="{{ url('/image/1') }}">Descarga Imágenes</a>
-</li>
+                   
 
                     @endrole
                 </ul>
